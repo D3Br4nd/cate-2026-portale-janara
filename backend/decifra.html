@@ -2,39 +2,207 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Decifra Testo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janara - Decifra Enigma</title>
     <style>
-        /* Stile identico all'altro file */
-        body { font-family: sans-serif; max-width: 800px; margin: 2em auto; }
-        textarea, input { width: 100%; margin-bottom: 1em; padding: 8px; box-sizing: border-box; }
-        button { padding: 10px 15px; cursor: pointer; }
-        pre { background-color: #f0f0f0; padding: 1em; white-space: pre-wrap; word-wrap: break-word; }
-        .error { color: red; }
+        body { 
+            font-family: 'Georgia', serif; 
+            max-width: 800px; 
+            margin: 2em auto; 
+            padding: 20px;
+            background: linear-gradient(135deg, #1a0f2e, #4a148c);
+            color: #f4f1e8;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h1 { 
+            color: #9c27b0; 
+            text-align: center; 
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            text-align: center;
+            color: #c0c0c0;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        textarea, input { 
+            width: 100%; 
+            margin-bottom: 1em; 
+            padding: 12px; 
+            box-sizing: border-box;
+            border: 2px solid #4a148c;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a0f2e;
+            font-size: 14px;
+        }
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: monospace;
+        }
+        button { 
+            padding: 12px 20px; 
+            cursor: pointer;
+            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #ba68c8, #9c27b0);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        pre { 
+            background: rgba(0, 0, 0, 0.6); 
+            padding: 20px; 
+            white-space: pre-wrap; 
+            word-wrap: break-word;
+            border-radius: 8px;
+            border: 1px solid #4a148c;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            min-height: 60px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .error { 
+            color: #ff6b6b !important; 
+            background: rgba(255, 107, 107, 0.1) !important;
+        }
+        .success {
+            color: #4caf50 !important;
+            background: rgba(76, 175, 80, 0.1) !important;
+        }
+        label {
+            font-weight: bold;
+            color: #9c27b0;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .nav-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #9c27b0;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid #9c27b0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background: #9c27b0;
+            color: white;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            color: #9c27b0;
+            font-style: italic;
+        }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4a148c;
+            border-radius: 50%;
+            border-top-color: #9c27b0;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .hint {
+            background: rgba(156, 39, 176, 0.1);
+            border: 1px solid #9c27b0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #ba68c8;
+        }
     </style>
 </head>
 <body>
-    <h1>Pagina di Decifratura</h1>
-    <p>Inserisci il testo cifrato (in Base64) e la parola chiave per ottenere il testo originale.</p>
+    <div class="container">
+        <h1>🔮 Janara 🔮</h1>
+        <p class="subtitle">Custode degli Enigmi - Decifratura</p>
+        
+        <p style="text-align: center; margin-bottom: 30px;">
+            <em>Svela i segreti nascosti dietro la cifratura antica...</em>
+        </p>
 
-    <label for="text-input">Testo cifrato:</label>
-    <textarea id="text-input" rows="10"></textarea>
+        <label for="text-input">🔐 Enigma Cifrato (Base64):</label>
+        <textarea id="text-input" placeholder="Incolla qui l'enigma cifrato da decifrare..."></textarea>
 
-    <label for="password-input">Parola Chiave:</label>
-    <input type="password" id="password-input">
+        <label for="password-input">🗝️ Parola Chiave Segreta:</label>
+        <input type="password" id="password-input" placeholder="La chiave per svelare il mistero...">
 
-    <button onclick="processText()">Decifra</button>
+        <button onclick="processText()">
+            🔓 Decifra Enigma
+        </button>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            Decifratura in corso...
+        </div>
 
-    <h2>Risultato (Testo Originale):</h2>
-    <pre id="result"></pre>
+        <div class="hint">
+            💡 <strong>Suggerimento:</strong> Assicurati di utilizzare la stessa chiave usata per cifrare l'enigma. 
+            La magia funziona solo con la parola segreta corretta!
+        </div>
+
+        <h2>📜 Enigma Rivelato:</h2>
+        <pre id="result" placeholder="Il messaggio decifrato apparirà qui..."></pre>
+
+        <a href="/janara/" class="nav-link">🔒 Torna alla Cifratura</a>
+    </div>
 
     <script>
         async function processText() {
             const text = document.getElementById('text-input').value;
             const password = document.getElementById('password-input').value;
             const resultEl = document.getElementById('result');
+            const loadingEl = document.getElementById('loading');
+            const button = document.querySelector('button');
+
+            if (!text.trim()) {
+                resultEl.textContent = 'Errore: Inserisci un testo cifrato da decifrare';
+                resultEl.className = "error";
+                return;
+            }
+
+            if (!password.trim()) {
+                resultEl.textContent = 'Errore: Inserisci la parola chiave';
+                resultEl.className = "error";
+                return;
+            }
+
+            // Mostra indicatore di caricamento
+            loadingEl.style.display = 'block';
+            button.disabled = true;
+            button.textContent = 'Decifratura in corso...';
+            resultEl.textContent = '';
+            resultEl.className = '';
 
             try {
-                // URL RELATIVO: la richiesta andrà allo stesso dominio che ha servito la pagina
                 const response = await fetch('/janara/decrypt', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -45,15 +213,36 @@
 
                 if (response.ok) {
                     resultEl.textContent = data.result;
-                    resultEl.className = "";
+                    resultEl.className = "success";
+                    
+                    // Aggiungi informazione sul successo
+                    const info = document.createElement('div');
+                    info.style.cssText = 'margin-top: 10px; font-size: 12px; color: #4caf50; font-style: italic;';
+                    info.textContent = `🎉 Enigma decifrato con successo!`;
+                    resultEl.appendChild(info);
                 } else {
                     throw new Error(data.error || 'Errore sconosciuto dal server.');
                 }
             } catch (error) {
-                resultEl.textContent = 'Errore di comunicazione: ' + error.message;
+                resultEl.textContent = '❌ ' + error.message;
                 resultEl.className = "error";
+            } finally {
+                // Nascondi indicatore di caricamento
+                loadingEl.style.display = 'none';
+                button.disabled = false;
+                button.textContent = '🔓 Decifra Enigma';
             }
         }
+
+        // Gestione tasto Invio
+        document.getElementById('password-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processText();
+            }
+        });
+
+        // Auto-focus sul campo testo cifrato
+        document.getElementById('text-input').focus();
     </script>
 </body>
 </html>
