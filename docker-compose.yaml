@@ -1,7 +1,7 @@
 services:
   # Servizio per il backend Python/Flask - Janara Crypto Service
   backend:
-    # build: ./backend
+    build: ./backend
     container_name: janara:1.0
     restart: unless-stopped
     environment:
