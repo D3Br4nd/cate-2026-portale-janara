@@ -35,7 +35,7 @@
 
             try {
                 // URL RELATIVO: la richiesta andrà allo stesso dominio che ha servito la pagina
-                const response = await fetch('/decrypt', {
+                const response = await fetch('/janara/decrypt', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ text: text, password: password })
