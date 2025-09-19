@@ -27,14 +27,14 @@ def get_key_from_password(password: str, salt: bytes) -> bytes:
 
 @app.route('/janara', methods=['GET'])
 @app.route('/janara/', methods=['GET'])
-def serve_encrypt_page():
-    """Serve la pagina di cifratura come pagina principale su /janara."""
-    return send_from_directory('.', 'cifra.html')
-
-@app.route('/janara/decifra', methods=['GET'])
 def serve_decrypt_page():
-    """Serve la pagina di decifratura su /janara/decifra."""
+    """Serve la pagina di decifratura come pagina principale su /janara."""
     return send_from_directory('.', 'decifra.html')
+
+@app.route('/janara/cifra', methods=['GET'])
+def serve_encrypt_page():
+    """Serve la pagina di cifratura su /janara/cifra."""
+    return send_from_directory('.', 'cifra.html')
 
 # --- ENDPOINT API PER LA CRITTOGRAFIA CON PREFISSO /janara ---
 
@@ -132,8 +132,8 @@ def service_info():
         'endpoints': {
             'encrypt': '/janara/encrypt',
             'decrypt': '/janara/decrypt',
-            'web_encrypt': '/janara/',
-            'web_decrypt': '/janara/decifra'
+            'web_decrypt': '/janara/',
+            'web_encrypt': '/janara/cifra'
         }
     })
 

@@ -48,8 +48,8 @@ Janara è un'applicazione Flask containerizzata progettata per cifrare e decifra
 
 Una volta deployato, il servizio sarà accessibile all'indirizzo:
 
-- **Cifratura**: `https://mio-sito.com/janara`
-- **Decifratura**: `https://mio-sito.com/janara/decifra`
+- **Decifratura** (default): `https://mio-sito.com/janara`
+- **Cifratura**: `https://mio-sito.com/janara/cifra`
 
 ## 📡 API Endpoints
 
@@ -118,8 +118,8 @@ GET /janara/info
   "endpoints": {
     "encrypt": "/janara/encrypt",
     "decrypt": "/janara/decrypt",
-    "web_encrypt": "/janara/",
-    "web_decrypt": "/janara/decifra"
+    "web_decrypt": "/janara/",
+    "web_encrypt": "/janara/cifra"
   }
 }
 ```
