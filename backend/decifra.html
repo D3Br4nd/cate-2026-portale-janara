@@ -2,8 +2,9 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Cifra Testo</title>
+    <title>Decifra Testo</title>
     <style>
+        /* Stile identico all'altro file */
         body { font-family: sans-serif; max-width: 800px; margin: 2em auto; }
         textarea, input { width: 100%; margin-bottom: 1em; padding: 8px; box-sizing: border-box; }
         button { padding: 10px 15px; cursor: pointer; }
@@ -12,18 +13,18 @@
     </style>
 </head>
 <body>
-    <h1>Pagina di Cifratura</h1>
-    <p>Inserisci il testo e la parola chiave per cifrarlo.</p>
+    <h1>Pagina di Decifratura</h1>
+    <p>Inserisci il testo cifrato (in Base64) e la parola chiave per ottenere il testo originale.</p>
 
-    <label for="text-input">Testo da cifrare:</label>
+    <label for="text-input">Testo cifrato:</label>
     <textarea id="text-input" rows="10"></textarea>
 
     <label for="password-input">Parola Chiave:</label>
-    <input type="password" id="password-input" value="leonessa">
+    <input type="password" id="password-input">
 
-    <button onclick="processText()">Cifra</button>
+    <button onclick="processText()">Decifra</button>
 
-    <h2>Risultato (Testo Cifrato in Base64):</h2>
+    <h2>Risultato (Testo Originale):</h2>
     <pre id="result"></pre>
 
     <script>
@@ -33,9 +34,8 @@
             const resultEl = document.getElementById('result');
 
             try {
-                // --- MODIFICA QUI ---
-                // L'URL ora punta alla porta 5001
-                const response = await fetch('http://localhost:5001/encrypt', {
+                // URL RELATIVO: la richiesta andrà allo stesso dominio che ha servito la pagina
+                const response = await fetch('/decrypt', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ text: text, password: password })

@@ -1,0 +1,59 @@
+# ################ #
+# Python           #
+# ################ #
+
+# Ambienti virtuali
+# Non includere mai la cartella dell'ambiente virtuale
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# File di bytecode e cache di Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# File di distribuzione/installazione
+dist/
+build/
+*.egg-info/
+*.egg
+
+# ################ #
+# Sistema Operativo#
+# ################ #
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# ################ #
+# Editor & IDE     #
+# ################ #
+
+# VSCode
+.vscode/
+
+# JetBrains (PyCharm, etc.)
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ################ #
+# Altri file       #
+# ################ #
+
+# File di log
+*.log
+
+# File di configurazione locale (se ne usi)
+# .env
+# local_settings.py

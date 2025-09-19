@@ -1,0 +1,12 @@
+services:
+  # Servizio per il backend Python/Flask
+  backend:
+    container_name: janara
+    #   - "5001:5001"
+    restart: unless-stopped
+    networks:
+      - plv_network
+
+networks:
+  plv_network:
+    external: true
