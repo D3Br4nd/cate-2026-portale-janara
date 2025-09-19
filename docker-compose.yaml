@@ -1,6 +1,7 @@
 services:
   # Servizio per il backend Python/Flask
   backend:
+    image: janara:1.0
     container_name: janara
     #   - "5001:5001"
     restart: unless-stopped
