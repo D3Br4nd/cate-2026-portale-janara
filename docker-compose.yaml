@@ -1,9 +1,8 @@
 services:
   # Servizio per il backend Python/Flask - Janara Crypto Service
   backend:
-    build: ./backend
-    image: janara:1.1
-    container_name: janara
+    # build: ./backend
+    container_name: janara:1.0
     restart: unless-stopped
     environment:
       - PORT=5001
